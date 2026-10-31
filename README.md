@@ -1,6 +1,6 @@
 # YOUR WALLET 
 A personal expense tracking application built with Python and Tkinter, featuring expense management, categorization, budget tracking, and data persistence.
-![app](<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/1286ea46-0593-4809-a461-6beea33a5e02" />)
+![Your Wallet](https://github.com/user-attachments/assets/1286ea46-0593-4809-a461-6beea33a5e02)
 
 ## Features
 - **Add Expenses:** Easily log personal expenses with the amount, category, and automatic timestamping.

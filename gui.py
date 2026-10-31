@@ -8,8 +8,14 @@ try:
     with open("expenses.txt", "r") as file:
         data = file.read()
         lines = data.splitlines()
+
         for line in lines:
-            expenses.append([int(line.split(" - ")[0]), line.split(" - ")[1], line.split(" - ")[2]])
+            parts = line.split(" - ")
+            if len(parts) == 3:
+                expenses.append([int(parts[0]), parts[1], parts[2]])
+            else:
+                print("Skipped bad line:", line)
+
 except FileNotFoundError:
     print("No expenses found")
 
@@ -50,6 +56,8 @@ def add_expense():
                     entry_expense.delete(0, tk.END)
                     entry_category.delete(0, tk.END)
 
+                view_expense()
+
     except ValueError:
         print("Please enter an integer")
 
@@ -71,7 +79,7 @@ def delete_expense():
     selected = listbox.curselection()
     print(selected)
 
-    if selected:
+    if selected and selected[0] < len(expenses):
         index = selected[0]
         expenses.pop(index)
 
@@ -98,4 +106,5 @@ button.pack()
 button = tk.Button(window, text="Delete Expense",command=delete_expense , bg="green", fg="white")
 button.pack()
 
+view_expense()
 window.mainloop()

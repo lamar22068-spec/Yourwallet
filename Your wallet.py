@@ -49,8 +49,8 @@ def view_expense():
     for item in table.get_children():
         table.delete(item)
 
-    for expense, category, time in expenses:
-        table.insert( "", tk.END, values=(expense, category, time))
+    for i, (expense, category, time) in enumerate(expenses):
+        table.insert("", tk.END, iid=str(i), values=(expense, category, time))
 
     update_total()
 
@@ -95,8 +95,7 @@ def delete_expense():
         status_label.config( text="Please select an expense first")
         return
 
-    item = selected[0]
-    index = table.index(item)
+    index = int(selected[0])
 
     expenses.pop(index)
 
@@ -126,8 +125,7 @@ def edit_expense():
             status_label.config( text="Category cannot be empty")
             return
 
-        item = selected[0]
-        index = table.index(item)
+        index = int(selected[0])
 
         time = expenses[index][2]
 
@@ -172,9 +170,9 @@ def search_category():
     for item in table.get_children():
         table.delete(item)
 
-    for expense, category, time in expenses:
+    for i, (expense, category, time) in enumerate(expenses):
         if search in category.lower():
-            table.insert( "", tk.END, values=(expense, category, time))
+            table.insert("", tk.END, iid=str(i), values=(expense, category, time))
 
     status_label.config(text="Search results displayed")
 
